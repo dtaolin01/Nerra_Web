@@ -1,10 +1,316 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nerra | Interactive Awareness Platform</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-$END$
+
+<nav id="navbar">
+    <div class="nav-container">
+        <a href="#" class="logo">
+            <i data-lucide="droplets" class="icon-brand"></i>
+            <span>NERRA.</span>
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#hero">Beranda</a></li>
+            <li><a href="#live-data">Live Data</a></li>
+            <li><a href="#infographics">Realita</a></li>
+            <li><a href="#cases">Kasus</a></li>
+            <li class="mobile-only"><a href="#challenge" class="btn-primary-small">Ikrar Sekarang</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <a href="#challenge" class="btn-primary-small desktop-only">
+                Ikrar Sekarang <i data-lucide="arrow-right" class="icon-sm"></i>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i data-lucide="menu"></i>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<header id="hero" class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-wrapper">
+        <div class="hero-content reveal-up">
+            <div class="badge-pill">
+                <span class="dot-pulse"></span> Tracker Darurat 2024
+            </div>
+            <h1 class="hero-title">
+                Krisis Ekologi <br>
+                <span class="text-gradient">Tak Kasat Mata.</span>
+            </h1>
+            <p class="hero-desc">
+                Ribuan ton plastik mengalir dalam kesunyian. Nerra mengubah angka statistik statis menjadi visualisasi real-time yang mendesak. Saksikan dampaknya, sadari bahayanya, dan jadilah solusi.
+            </p>
+            <div class="hero-actions">
+                <a href="#challenge" class="btn-action-glow">Ambil Bagian Sekarang</a>
+            </div>
+        </div>
+
+        <div class="hero-visual reveal-fade">
+            <div class="glass-panel main-glass">
+                <div class="glass-header">
+                    <i data-lucide="activity"></i> Volume Jawa Timur
+                </div>
+                <div class="glass-body">
+                    <h2 id="hero-counter">13,000,000</h2>
+                    <p>Kg produksi plastik tahun ini</p>
+                    <div class="live-status">
+                        <span class="indicator-red"></span> Data Terus Berjalan
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="live-data" class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center reveal-up">
+            <h2 class="section-title">Detak Jantung Pencemaran</h2>
+            <p class="section-subtitle">Simulasi algoritma berdasarkan data produksi dan kebocoran tahunan.</p>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-card col-span-2 row-span-2 reveal-up">
+                <div class="bento-inner">
+                    <div class="icon-box bg-blue"><i data-lucide="factory"></i></div>
+                    <h3 class="counter-xl text-prussian" id="plastic-jatim">0</h3>
+                    <p class="bento-title">Kg Sampah Plastik Diproduksi (Jawa Timur)</p>
+                    <p class="bento-desc mt-2">Mesin industri terus mencetak kemasan saset murah setiap detiknya, jauh melampaui kemampuan alam untuk mendaur ulang.</p>
+                </div>
+            </div>
+
+            <div class="bento-card reveal-up delay-1">
+                <div class="bento-inner">
+                    <div class="icon-box bg-cyan"><i data-lucide="waves"></i></div>
+                    <h3 class="counter-lg text-prussian" id="plastic-leak">0</h3>
+                    <p class="bento-title">Ton Bocor ke Laut</p>
+                </div>
+            </div>
+
+            <div class="bento-card reveal-up delay-2">
+                <div class="bento-inner">
+                    <div class="icon-box bg-red"><i data-lucide="skull"></i></div>
+                    <h3 class="counter-lg text-prussian" id="sea-animals">0</h3>
+                    <p class="bento-title">Hewan Laut Mati</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="infographics" class="section-padding bg-white">
+    <div class="container grid-split">
+        <div class="info-content reveal-right">
+            <div class="badge-pill danger">Zona Kritis Surabaya</div>
+            <h2 class="section-title">Darurat Volume di Jantung Kota.</h2>
+            <p class="section-subtitle mt-4">Di musim hujan, beban ini meledak tak terkendali menyumbat urat nadi perairan kota.</p>
+
+            <ul class="feature-list mt-8">
+                <li>
+                    <div class="feature-icon bg-red-light text-red"><i data-lucide="alert-triangle"></i></div>
+                    <div class="feature-text">
+                        <strong>40 Ton Sampah per Hari</strong>
+                        <span>Masuk ke Sungai Surabaya saat curah hujan tinggi.</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-icon bg-blue-light text-blue"><i data-lucide="pie-chart"></i></div>
+                    <div class="feature-text">
+                        <strong>Krisis 40% Anorganik</strong>
+                        <span>Meski didominasi organik (60%), 40% sisanya adalah limbah abadi.</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-visual reveal-left">
+            <div class="ui-card">
+                <h4 class="text-prussian font-bold mb-2">Komposisi Sampah Harian</h4>
+                <p class="text-sm text-muted mb-6">Data proporsi limbah rata-rata.</p>
+
+                <div class="progress-group mb-6">
+                    <div class="progress-labels">
+                        <span class="font-bold text-prussian">Organik</span>
+                        <span class="font-bold text-prussian">60%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill fill-blue" style="width: 60%;"></div></div>
+                </div>
+
+                <div class="progress-group mb-8">
+                    <div class="progress-labels">
+                        <span class="font-bold text-red">Plastik & Anorganik</span>
+                        <span class="font-bold text-red">40%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill fill-red" style="width: 40%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header text-center reveal-up">
+            <h2 class="section-title">Anatomi Bencana Ekologi</h2>
+            <p class="section-subtitle">Siklus hidup plastik dari tangan kita hingga menghancurkan lautan.</p>
+        </div>
+
+        <div class="timeline-wrapper mt-12">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item reveal-up">
+                <div class="timeline-dot"><i data-lucide="shopping-bag"></i></div>
+                <div class="timeline-content">
+                    <h4>Konsumsi Sekali Pakai</h4>
+                    <p>Ketergantungan pada produk saset murah yang tidak bernilai ekonomis untuk didaur ulang.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal-up delay-1">
+                <div class="timeline-dot"><i data-lucide="trash-2"></i></div>
+                <div class="timeline-content">
+                    <h4>Manajemen Limbah Buruk</h4>
+                    <p>Sampah dibuang sembarangan, terbawa angin dan hujan ke saluran air kota.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal-up delay-2">
+                <div class="timeline-dot"><i data-lucide="waves"></i></div>
+                <div class="timeline-content">
+                    <h4>Penyumbatan Sungai</h4>
+                    <p>Bertumpuk di sungai seperti Kali Tebu, merusak kualitas air dan menyebabkan banjir.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cases" class="section-padding bg-prussian">
+    <div class="container">
+        <div class="section-header text-center reveal-up">
+            <h2 class="section-title text-white">Laporan Lapangan Jawa Timur</h2>
+            <p class="section-subtitle text-muted-light">Titik paling terdampak yang membutuhkan perhatian segera.</p>
+        </div>
+
+        <div class="cards-grid mt-12">
+            <article class="case-card reveal-up">
+                <div class="case-thumb" style="background-image: url('https://images.unsplash.com/photo-1618477461853-cf6ed80f47e0?q=80&w=1000');">
+                    <span class="case-tag">Kali Tebu</span>
+                </div>
+                <div class="case-content">
+                    <h3 class="case-title">907 Kg Sampah dalam 24 Jam</h3>
+                    <p class="case-desc">Pemasangan alat trashboom mengungkap 757 Kg sampah yang tersangkut murni merupakan limbah plastik domestik.</p>
+                </div>
+            </article>
+
+            <article class="case-card reveal-up delay-1">
+                <div class="case-thumb" style="background-image: url('https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=1000');">
+                    <span class="case-tag">Ancaman</span>
+                </div>
+                <div class="case-content">
+                    <h3 class="case-title">Invasi Partikel Mikroplastik</h3>
+                    <p class="case-desc">Observasi membuktikan air sungai mulai jenuh dengan mikroplastik, meracuni insang ikan dan lingkungan sekitarnya.</p>
+                </div>
+            </article>
+
+            <article class="case-card reveal-up delay-2">
+                <div class="case-thumb" style="background-image: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1000');">
+                    <span class="case-tag">Solusi</span>
+                </div>
+                <div class="case-content">
+                    <h3 class="case-title">Digitalisasi TPST Magersari</h3>
+                    <p class="case-desc">Langkah progresif pemerintah membangun sistem kelola limbah terpadu untuk melacak sirkulasi sampah anorganik.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="challenge" class="pledge-section">
+    <div class="pledge-bg-image"></div>
+    <div class="pledge-overlay"></div>
+
+    <div class="container pledge-wrapper relative z-10">
+        <div class="pledge-text reveal-right">
+            <div class="badge-pill light mb-6">Nerra Challenge</div>
+            <h2 class="section-title text-white">Ubah Angka,<br>Selamatkan Ekologi.</h2>
+            <p class="text-lg text-muted-light mb-8 max-w-md">
+                Hanya membaca tidak akan membersihkan 40 ton sampah per hari di Surabaya. Kami mengundang Anda untuk membuat komitmen nyata. Berikrar hari ini, kurangi sampah besok.
+            </p>
+
+            <div class="stats-counter-group flex gap-8">
+                <div class="stat-item">
+                    <strong class="text-cyan text-4xl font-bold block" id="pledge-count">10,482</strong>
+                    <span class="text-xs text-white uppercase tracking-widest opacity-80">Orang Berikrar</span>
+                </div>
+                <div class="stat-item">
+                    <strong class="text-cyan text-4xl font-bold block">1.2 Ton</strong>
+                    <span class="text-xs text-white uppercase tracking-widest opacity-80">Plastik Dicegah/Hari</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pledge-form-box reveal-left">
+            <form id="challengeForm" class="premium-form">
+                <div class="form-header text-center mb-8">
+                    <h3 class="text-2xl text-white font-bold">Ikrar Aksi Nyata</h3>
+                    <p class="text-sm text-muted-light mt-2">Lengkapi data untuk bergabung dalam gerakan.</p>
+                </div>
+
+                <div class="input-group">
+                    <i data-lucide="user" class="input-icon"></i>
+                    <input type="text" placeholder="Nama Lengkap Anda" required class="form-input">
+                </div>
+
+                <div class="input-group mt-4">
+                    <i data-lucide="mail" class="input-icon"></i>
+                    <input type="email" placeholder="Alamat Email" required class="form-input">
+                </div>
+
+                <div class="input-group mt-4 relative">
+                    <i data-lucide="target" class="input-icon"></i>
+                    <select required class="form-select">
+                        <option value="" disabled selected>Pilih komitmen utama Anda...</option>
+                        <option value="sedotan">Tolak Sedotan & Kantong Plastik</option>
+                        <option value="botol">Bawa Tumbler & Kotak Makan</option>
+                        <option value="pilah">Pilah Sampah dari Rumah</option>
+                        <option value="saset">Kurangi Konsumsi Produk Saset</option>
+                    </select>
+                    <i data-lucide="chevron-down" class="select-arrow"></i>
+                </div>
+
+                <button type="submit" class="btn-action-glow w-full mt-8">
+                    <i data-lucide="check-circle" class="mr-2"></i> DEKLARASIKAN IKRAR
+                </button>
+
+                <p class="text-xs text-center text-muted-light mt-6 flex justify-center items-center gap-2">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-green-400"></i> Data aman & terenkripsi
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="main-footer bg-light section-padding pb-8 border-top">
+    <div class="container border-top pt-8 flex-between-md">
+        <p class="text-sm text-muted text-center md:text-left">&copy; 2026 Nerra - New Media Production A.</p>
+    </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+<script src="script.js"></script>
 </body>
 </html>
