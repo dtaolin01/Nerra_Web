@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 1. Mobile Hamburger Menu Toggle
+    // 1. Mobile Menu Interactivity
     const mobileMenuBtn = document.getElementById("mobile-menu");
     const navLinks = document.getElementById("nav-links");
 
     if(mobileMenuBtn && navLinks) {
         mobileMenuBtn.addEventListener("click", () => {
             navLinks.classList.toggle("active");
-            // Ganti icon dari hamburger ke close (X)
             const icon = mobileMenuBtn.querySelector('i');
             if (navLinks.classList.contains("active")) {
                 icon.setAttribute("data-lucide", "x");
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lucide.createIcons();
         });
 
-        // Tutup menu saat link diklik (di HP)
+        // Close menu on link click (Mobile)
         const links = navLinks.querySelectorAll("a");
         links.forEach(link => {
             link.addEventListener("click", () => {
@@ -28,27 +27,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Navbar Effect
+    // 2. Glassmorphism Navbar on Scroll
     const navbar = document.getElementById("navbar");
     window.addEventListener("scroll", () => {
         if (window.scrollY > 30) {
             navbar.classList.add("scrolled");
-            // Jika menu mobile terbuka dan user scroll, tutup menu
-            if(navLinks && navLinks.classList.contains("active")) {
-                navLinks.classList.remove("active");
-                mobileMenuBtn.querySelector('i').setAttribute("data-lucide", "menu");
-                lucide.createIcons();
-            }
         } else {
             navbar.classList.remove("scrolled");
         }
     });
 
-    // 3. Reveal Animation on Scroll
+    // 3. Scroll Reveal Animation (Intersection Observer)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("active");
+                // Stop observing once animated
                 observer.unobserve(entry.target);
             }
         });
@@ -56,13 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-fade').forEach(el => observer.observe(el));
 
-    // 4. Live Counter (Data Simulasi)
+    // 4. Live Counter Simulation Engine
     function animateLiveCounter(id, targetPerYear) {
         const element = document.getElementById(id);
         if (!element) return;
 
+        // Calculate addition per 100ms
         const incrementPerMs = targetPerYear / (365 * 24 * 60 * 60 * 10);
-        let currentVal = targetPerYear * 0.95;
+        let currentVal = targetPerYear * 0.95; // Start at 95% of target for realism
 
         setInterval(() => {
             currentVal += incrementPerMs;
@@ -70,12 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     }
 
+    // Execute with Real Data
     animateLiveCounter('hero-counter', 13000000);
     animateLiveCounter('plastic-jatim', 13000000);
     animateLiveCounter('plastic-leak', 1270000);
     animateLiveCounter('sea-animals', 64828);
 
-    // 5. Form Ikrar Submit Event
+    // 5. Pledge Form Submission UX
     const form = document.getElementById('challengeForm');
     const pledgeCountElement = document.getElementById('pledge-count');
 
@@ -85,15 +81,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const btn = form.querySelector('button');
             const originalHtml = btn.innerHTML;
 
+            // Success Feedback
             btn.innerHTML = `<i data-lucide="check" class="mr-2"></i> IKRAR TERCATAT!`;
             btn.style.background = "linear-gradient(135deg, #10B981, #059669)";
             lucide.createIcons();
 
+            // Increment UI Counter
             if(pledgeCountElement) {
                 let currentCount = parseInt(pledgeCountElement.innerText.replace(/,/g, ''));
                 pledgeCountElement.innerText = (currentCount + 1).toLocaleString('id-ID');
             }
 
+            // Reset after 3 seconds
             setTimeout(() => {
                 form.reset();
                 btn.innerHTML = originalHtml;
