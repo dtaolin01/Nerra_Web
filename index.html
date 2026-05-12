@@ -44,6 +44,7 @@
 <header id="home" class="hero-section">
     <div class="container hero-container relative z-10">
         <div class="hero-content reveal-up text-center lg:text-left">
+
             <div class="hero-logo-wrapper mb-6 flex justify-center lg:justify-start">
                 <img src="Logo nerra.png" alt="Logo Nerra" class="floating-logo-main" onerror="this.style.display='none';">
             </div>
@@ -162,7 +163,7 @@
             </div>
 
             <div class="card-navy hover-lift flex flex-col h-full">
-                <i data-lucide="leaf" class="text-green w-8 h-8 mb-6 drop-shadow-green"></i>
+                <i data-lucide="leaf" class="text-green-400 w-8 h-8 mb-6 drop-shadow-green"></i>
                 <h5 class="text-sm font-bold text-white mb-2">Dominasi Sampah Organik</h5>
                 <h3 class="text-4xl font-extrabold text-green mb-4 drop-shadow-green font-tnum">60%</h3>
                 <p class="text-xs text-muted mt-auto">Sebagian besar limbah harian masih berasal dari sampah organik rumah tangga</p>
@@ -185,60 +186,7 @@
     </div>
 </section>
 
-<section id="microplastic" class="section-padding relative z-10 border-b">
-    <div class="container max-w-4xl">
-        <div class="card-navy reveal-up p-8 md:p-12">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="alert-triangle" class="text-red w-6 h-6 drop-shadow-red"></i>
-                <h2 class="text-2xl md:text-3xl font-bold text-white">Status Pencemaran Mikroplastik</h2>
-            </div>
-
-            <p class="text-sm text-muted mb-4 leading-relaxed">Partikel mikroplastik kini ditemukan di berbagai titik aliran sungai perkotaan.</p>
-            <p class="text-sm text-muted mb-12 leading-relaxed">Konsentrasi tertinggi menunjukkan bahwa pencemaran telah mencapai level serius dan berpotensi membahayakan kualitas air serta ekosistem lingkungan.</p>
-
-            <div class="mp-container">
-                <div class="mp-row">
-                    <div class="mp-header-flex">
-                        <span class="mp-label">Rata-rata</span>
-                        <div class="mp-value-wrap">
-                            <span class="mp-number text-yellow drop-shadow-yellow">82</span>
-                            <span class="mp-badge bg-yellow text-prussian">SEDANG</span>
-                        </div>
-                    </div>
-                    <div class="bar-track-thick"><div class="bar-fill bg-yellow" style="width: 30%"></div></div>
-                </div>
-
-                <div class="mp-row">
-                    <div class="mp-header-flex">
-                        <span class="mp-label">Hilir</span>
-                        <div class="mp-value-wrap">
-                            <span class="mp-number text-orange drop-shadow-orange">123</span>
-                            <span class="mp-badge bg-orange text-white">TINGGI</span>
-                        </div>
-                    </div>
-                    <div class="bar-track-thick"><div class="bar-fill bg-orange" style="width: 50%"></div></div>
-                </div>
-
-                <div class="mp-row">
-                    <div class="mp-header-flex">
-                        <span class="mp-label">Titik Kritis</span>
-                        <div class="mp-value-wrap">
-                            <span class="mp-number text-red drop-shadow-red">410</span>
-                            <span class="mp-badge bg-red text-white">KRITIS</span>
-                        </div>
-                    </div>
-                    <div class="bar-track-thick"><div class="bar-fill bg-red" style="width: 95%"></div></div>
-                </div>
-            </div>
-
-            <div class="mt-12 pt-6 border-t border-white/10 text-center">
-                <p class="text-sm text-cyan italic">"Partikel kecil dengan dampak besar bagi lingkungan."</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="journalism" class="section-padding relative z-10 border-b bg-dark-layer">
+<section id="journalism" class="section-padding relative z-10 border-b">
     <div class="container">
         <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
             <span class="subtitle-tag">Laporan Investigasi</span>
@@ -281,7 +229,7 @@
     </div>
 </section>
 
-<section id="campaign" class="section-padding relative z-10 border-b">
+<section id="campaign" class="section-padding relative z-10 border-b bg-dark-layer">
     <div class="container">
         <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
             <span class="subtitle-tag text-red">Real Action. Real Impact.</span>
@@ -321,7 +269,7 @@
     </div>
 </section>
 
-<section id="about" class="section-padding relative z-10 border-b bg-dark-layer">
+<section id="about" class="section-padding relative z-10 border-b">
     <div class="container">
         <div class="text-center max-w-4xl mx-auto mb-16 reveal-up">
             <span class="subtitle-tag">Platform Visualisasi</span>
@@ -376,7 +324,6 @@
                 <div class="glass-card p-8 sm:p-12 h-full flex flex-col justify-center bg-black/20">
                     <h3 class="text-3xl font-bold text-white mb-4">Hubungi Kami</h3>
                     <p class="text-muted mb-8">Punya data lapangan terbaru atau ingin berkolaborasi? Mari bicara.</p>
-
                     <form class="space-y-5" onsubmit="event.preventDefault(); alert('Pesan berhasil terkirim!');">
                         <input type="text" placeholder="Nama Lengkap" required class="form-input">
                         <input type="email" placeholder="Alamat Email" required class="form-input">
@@ -389,12 +336,11 @@
     </div>
 </section>
 
-<section id="movement" class="pledge-section relative z-10">
+<section id="movement" class="pledge-section relative z-10 bg-dark-layer">
     <div class="pledge-bg"></div>
     <div class="container relative z-20">
         <div class="solid-card p-8 md:p-12 lg:p-16 border border-white/5 shadow-glow bg-[#0A1424]">
             <div class="grid-2 gap-12 lg:gap-16 items-center">
-
                 <div class="reveal-right text-center lg:text-left">
                     <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">It's Now<br><span class="text-cyan">or Never.</span></h2>
                     <p class="text-lg text-muted-light mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
@@ -409,17 +355,14 @@
                 <div class="reveal-left">
                     <form id="challengeForm" class="solid-card p-6 sm:p-8 bg-[#111F36] border border-white/5 shadow-2xl rounded-2xl">
                         <h3 class="text-2xl font-bold text-white mb-6 text-center">Commit Sekarang!</h3>
-
                         <div class="form-group-safe">
                             <i data-lucide="user" class="form-icon-safe"></i>
                             <input type="text" placeholder="Nama / Panggilan Lo" required class="form-input-safe">
                         </div>
-
                         <div class="form-group-safe">
                             <i data-lucide="mail" class="form-icon-safe"></i>
                             <input type="email" placeholder="Email (Buat update info)" required class="form-input-safe">
                         </div>
-
                         <div class="form-group-safe">
                             <i data-lucide="target" class="form-icon-safe"></i>
                             <select required class="form-input-safe select-safe text-white">
@@ -430,13 +373,9 @@
                             </select>
                             <i data-lucide="chevron-down" class="select-arrow-safe"></i>
                         </div>
-
-                        <button type="submit" class="btn-primary w-full py-4 text-lg font-extrabold uppercase shadow-lg shadow-cyan/20 mt-4">
-                            Count Me In!
-                        </button>
+                        <button type="submit" class="btn-primary w-full py-4 text-lg font-extrabold uppercase shadow-lg mt-4">Count Me In!</button>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
@@ -449,17 +388,15 @@
                 <img src="Logo nerra.png" alt="Nerra Logo" class="footer-logo" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=N&color=06B6D4&background=transparent';">
                 <span class="text-xl font-bold text-white tracking-tight">Nerra.</span>
             </div>
-
             <div class="footer-links-group">
                 <a href="#home" class="hover:text-cyan transition-colors">Beranda</a>
                 <a href="#journalism" class="hover:text-cyan transition-colors">Laporan</a>
                 <a href="#campaign" class="hover:text-cyan transition-colors">Aksi Nyata</a>
-                <a href="https://share.google/lcR6mhUqno9TUIpG5" target="_blank" class="text-cyan hover:text-white transition-colors flex items-center"><i data-lucide="folder-open" class="w-4 h-4 mr-1"></i> Data Mentah</a>
+                <a href="https://share.google/lcR6mhUqno9TUIpG5" target="_blank" class="text-cyan hover:text-white transition-colors flex items-center"><i data-lucide="folder-open" class="w-4 h-4 inline mr-1"></i> Data Mentah</a>
             </div>
         </div>
-
-        <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted">
-            <p>&copy; 2026 Nerra Interactive - New Media Production A.</p>
+        <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted text-center">
+            <p>&copy; 2026 Nerra Interactive Project - New Media Production A.</p>
             <div class="flex gap-6">
                 <a href="#" class="hover:text-cyan transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
                 <a href="#" class="hover:text-cyan transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
