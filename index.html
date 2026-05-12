@@ -26,10 +26,10 @@
 
         <ul class="nav-links" id="nav-links">
             <li><a href="#home">Beranda</a></li>
-            <li><a href="#data">Data Live</a></li>
-            <li><a href="#visual-lab">Simulasi</a></li>
+            <li><a href="#data-live">Data Live</a></li>
             <li><a href="#journalism">Investigasi</a></li>
             <li><a href="#campaign">Aksi Nyata</a></li>
+            <li><a href="#about">Tentang</a></li>
             <li class="mobile-only mt-4"><a href="#movement" class="btn-primary w-full text-center py-3">Join Movement</a></li>
         </ul>
 
@@ -44,7 +44,6 @@
 <header id="home" class="hero-section">
     <div class="container hero-container relative z-10">
         <div class="hero-content reveal-up text-center lg:text-left">
-
             <div class="hero-logo-wrapper mb-6 flex justify-center lg:justify-start">
                 <img src="Logo nerra.png" alt="Logo Nerra" class="floating-logo-main" onerror="this.style.display='none';">
             </div>
@@ -60,8 +59,8 @@
                 Setiap detik, sampah terus numpuk. Sungai tercemar, mikroplastik menyebar, dan kualitas hidup kita perlahan turun. Pantau langsung detak jantung polusi Jawa Timur secara real-time.
             </p>
             <div class="hero-actions mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
-                <a href="#data" class="btn-primary">Eksplorasi Data</a>
-                <a href="#visual-lab" class="btn-secondary">Lihat Realita</a>
+                <a href="#data-live" class="btn-primary">Eksplorasi Data</a>
+                <a href="#journalism" class="btn-secondary">Lihat Realita</a>
             </div>
         </div>
 
@@ -93,74 +92,153 @@
     </div>
 </div>
 
-<section id="data" class="section-padding relative z-10 border-b">
+<section id="data-live" class="section-padding relative z-10 border-b">
     <div class="container">
-        <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
-            <span class="subtitle-tag">Dashboard Monitoring</span>
-            <h2 class="section-title text-white mt-4">Status Ekologi: Kritis</h2>
-            <p class="text-lg text-muted mt-4">Proyeksi algoritma laju produksi dan kebocoran limbah plastik detik demi detik berdasarkan data lingkungan terbaru.</p>
+        <div class="text-center mb-16 reveal-up">
+            <div class="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-5 py-2 rounded-full mb-6">
+                <span class="dot-indicator bg-cyan pulse-anim inline-block"></span>
+                <span class="text-cyan text-xs font-bold tracking-widest uppercase">LIVE MONITORING</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4">Akumulasi Sampah Secara Realtime</h2>
+            <p class="text-lg text-muted italic">"Sampah tidak benar-benar hilang, hanya berpindah tempat."</p>
         </div>
 
-        <div class="bento-grid">
-            <div class="glass-card reveal-up flex flex-col justify-between" style="grid-column: 1 / -1;">
-                <div class="flex-between mb-8 gap-4 flex-wrap">
-                    <div class="icon-wrapper bg-cyan-light text-cyan"><i data-lucide="factory" class="w-8 h-8"></i></div>
-                    <span class="badge-glass text-red border-red bg-red-light pulse-bg">Darurat Nasional</span>
+        <div class="data-grid reveal-up delay-1">
+            <div class="data-card border-b-cyan">
+                <i data-lucide="trash-2" class="watermark-icon"></i>
+                <div class="data-card-content">
+                    <h5 class="data-card-title">SAMPAH MASUK TPA SURABAYA</h5>
+                    <h3 id="count-tpa" class="data-card-number text-cyan drop-shadow-cyan">210,075.60</h3>
+                    <p class="data-card-unit">ton tahun ini</p>
+                    <div class="data-live-indicator text-cyan">
+                        <span class="dot-indicator bg-cyan pulse-anim inline-block"></span> +0.0185 ton/detik
+                    </div>
+                    <div class="progress-track"><div class="progress-fill bg-cyan" style="width: 35%"></div></div>
                 </div>
-                <h3 class="text-5xl lg:text-6xl font-extrabold text-white mb-2">13.83<span class="text-3xl text-cyan">%</span></h3>
-                <p class="text-sm font-bold text-cyan tracking-widest uppercase mb-6">Andil Sampah Nasional</p>
-                <p class="text-muted leading-relaxed max-w-4xl">Jawa Timur resmi menempati posisi kedua penyumbang sampah terbesar di Indonesia. Volume ini bikin ekosistem sungai dan laut kita kewalahan banget buat mendaur ulang secara alami.</p>
+                <p class="data-card-desc">Ribuan ton sampah terus masuk ke tempat pembuangan akhir setiap harinya.</p>
             </div>
 
-            <div class="glass-card text-center reveal-up delay-1 flex flex-col items-center">
-                <div class="icon-wrapper bg-cyan-light text-cyan mx-auto mb-6"><i data-lucide="anchor" class="w-8 h-8"></i></div>
-                <h3 id="plastic-leak" class="text-4xl lg:text-5xl font-bold text-white font-tnum mb-4">0</h3>
-                <div class="h-1 w-12 bg-cyan mx-auto rounded-full mb-4"></div>
-                <p class="text-xs text-muted font-bold tracking-widest uppercase">Ton Bocor ke Laut</p>
+            <div class="data-card border-b-cyan">
+                <i data-lucide="waves" class="watermark-icon"></i>
+                <div class="data-card-content">
+                    <h5 class="data-card-title">PENCEMARAN SAMPAH SUNGAI</h5>
+                    <h3 id="count-sungai" class="data-card-number text-cyan drop-shadow-cyan">4,267.34</h3>
+                    <p class="data-card-unit">ton tahun ini</p>
+                    <div class="data-live-indicator text-cyan">
+                        <span class="dot-indicator bg-cyan pulse-anim inline-block"></span> +0.0004 ton/detik
+                    </div>
+                    <div class="progress-track"><div class="progress-fill bg-cyan" style="width: 15%"></div></div>
+                </div>
+                <p class="data-card-desc">Aliran sungai dipenuhi dominasi sampah plastik yang terus meningkat.</p>
             </div>
 
-            <div class="glass-card text-center reveal-up delay-2 flex flex-col items-center">
-                <div class="icon-wrapper bg-red-light text-red mx-auto mb-6"><i data-lucide="skull" class="w-8 h-8"></i></div>
-                <h3 id="sea-animals" class="text-4xl lg:text-5xl font-bold text-white font-tnum mb-4">0</h3>
-                <div class="h-1 w-12 bg-red mx-auto rounded-full mb-4"></div>
-                <p class="text-xs text-muted font-bold tracking-widest uppercase">Biota Laut Mati</p>
+            <div class="data-card border-b-orange">
+                <i data-lucide="factory" class="watermark-icon text-orange"></i>
+                <div class="data-card-content">
+                    <h5 class="data-card-title">PRODUKSI SAMPAH JAWA TIMUR</h5>
+                    <h3 id="count-jatim" class="data-card-number text-orange drop-shadow-orange">1,543,192.31</h3>
+                    <p class="data-card-unit">ton tahun ini</p>
+                    <div class="data-live-indicator text-cyan">
+                        <span class="dot-indicator bg-cyan pulse-anim inline-block"></span> +0.1359 ton/detik
+                    </div>
+                    <div class="progress-track"><div class="progress-fill bg-white" style="width: 65%"></div></div>
+                </div>
+                <p class="data-card-desc">Jutaan ton sampah dihasilkan setiap tahun dan terus bertambah setiap detik.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="visual-lab" class="section-padding bg-gradient-b border-b relative z-10">
+<section id="daily-waste" class="section-padding relative z-10 border-b bg-dark-layer">
     <div class="container">
-        <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
-            <span class="subtitle-tag">Interactive Lab</span>
-            <h2 class="section-title text-white mt-4">Garis Waktu Dekomposisi</h2>
-            <p class="text-lg text-muted mt-4">Berapa lama sampah yang lo buang hari ini bakal menetap di bumi?</p>
-        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12 reveal-up">Gambaran Sampah Harian</h2>
 
-        <div class="auto-grid gap-8 reveal-up">
-            <div class="glass-card border-top-yellow text-center hover-lift flex flex-col justify-between">
-                <div class="text-5xl mb-6 bounce-anim">🛍️</div>
-                <h5 class="text-white font-bold text-xl mb-2">Kantong Plastik</h5>
-                <p class="text-yellow font-extrabold text-2xl mb-4">10-20 Tahun</p>
-                <p class="text-sm text-muted">Sering disangka ubur-ubur oleh penyu laut.</p>
+        <div class="daily-grid reveal-up delay-1">
+            <div class="card-navy hover-lift flex flex-col h-full">
+                <i data-lucide="trash-2" class="text-red w-8 h-8 mb-6 drop-shadow-red"></i>
+                <h5 class="text-sm font-bold text-white mb-2">1.600 Ton Sampah per Hari</h5>
+                <h3 class="text-4xl font-extrabold text-red mb-4 drop-shadow-red font-tnum">1,600</h3>
+                <p class="text-xs text-muted mt-auto">Volume sampah yang masuk ke TPA Surabaya setiap harinya</p>
             </div>
-            <div class="glass-card border-top-orange text-center hover-lift flex flex-col justify-between delay-1">
-                <div class="text-5xl mb-6 bounce-anim">🍜</div>
-                <h5 class="text-white font-bold text-xl mb-2">Kemasan Saset</h5>
-                <p class="text-orange font-extrabold text-2xl mb-4">100 Tahun</p>
-                <p class="text-sm text-muted">Multi-layer yang sangat sulit didaur ulang.</p>
+
+            <div class="card-navy hover-lift flex flex-col h-full">
+                <i data-lucide="leaf" class="text-green w-8 h-8 mb-6 drop-shadow-green"></i>
+                <h5 class="text-sm font-bold text-white mb-2">Dominasi Sampah Organik</h5>
+                <h3 class="text-4xl font-extrabold text-green mb-4 drop-shadow-green font-tnum">60%</h3>
+                <p class="text-xs text-muted mt-auto">Sebagian besar limbah harian masih berasal dari sampah organik rumah tangga</p>
             </div>
-            <div class="glass-card border-top-red text-center hover-lift flex flex-col justify-between delay-2">
-                <div class="text-5xl mb-6 bounce-anim">🧴</div>
-                <h5 class="text-white font-bold text-xl mb-2">Botol Plastik PET</h5>
-                <p class="text-red font-extrabold text-2xl mb-4">450 Tahun</p>
-                <p class="text-sm text-muted">Pecah menjadi mikroplastik yang meracuni air.</p>
+
+            <div class="card-navy hover-lift flex flex-col h-full">
+                <i data-lucide="alert-circle" class="text-orange w-8 h-8 mb-6 drop-shadow-orange"></i>
+                <h5 class="text-sm font-bold text-white mb-2">Plastik Mendominasi Sungai</h5>
+                <h3 class="text-4xl font-extrabold text-orange mb-4 drop-shadow-orange font-tnum">276</h3>
+                <p class="text-xs text-muted mt-auto">Sampah anorganik, terutama plastik, menjadi pencemar utama di aliran sungai</p>
+            </div>
+
+            <div class="card-navy hover-lift flex flex-col h-full">
+                <i data-lucide="waves" class="text-cyan w-8 h-8 mb-6 drop-shadow-cyan"></i>
+                <h5 class="text-sm font-bold text-white mb-2">Realita Pembersihan Sungai</h5>
+                <h3 class="text-4xl font-extrabold text-cyan mb-4 drop-shadow-cyan font-tnum">55</h3>
+                <p class="text-xs text-muted mt-auto">Pembersihan terus dilakukan, namun jumlah sampah tetap mengalami peningkatan</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="journalism" class="section-padding relative z-10 border-b">
+<section id="microplastic" class="section-padding relative z-10 border-b">
+    <div class="container max-w-4xl">
+        <div class="card-navy reveal-up p-8 md:p-12">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="alert-triangle" class="text-red w-6 h-6 drop-shadow-red"></i>
+                <h2 class="text-2xl md:text-3xl font-bold text-white">Status Pencemaran Mikroplastik</h2>
+            </div>
+
+            <p class="text-sm text-muted mb-4 leading-relaxed">Partikel mikroplastik kini ditemukan di berbagai titik aliran sungai perkotaan.</p>
+            <p class="text-sm text-muted mb-12 leading-relaxed">Konsentrasi tertinggi menunjukkan bahwa pencemaran telah mencapai level serius dan berpotensi membahayakan kualitas air serta ekosistem lingkungan.</p>
+
+            <div class="mp-container">
+                <div class="mp-row">
+                    <div class="mp-header-flex">
+                        <span class="mp-label">Rata-rata</span>
+                        <div class="mp-value-wrap">
+                            <span class="mp-number text-yellow drop-shadow-yellow">82</span>
+                            <span class="mp-badge bg-yellow text-prussian">SEDANG</span>
+                        </div>
+                    </div>
+                    <div class="bar-track-thick"><div class="bar-fill bg-yellow" style="width: 30%"></div></div>
+                </div>
+
+                <div class="mp-row">
+                    <div class="mp-header-flex">
+                        <span class="mp-label">Hilir</span>
+                        <div class="mp-value-wrap">
+                            <span class="mp-number text-orange drop-shadow-orange">123</span>
+                            <span class="mp-badge bg-orange text-white">TINGGI</span>
+                        </div>
+                    </div>
+                    <div class="bar-track-thick"><div class="bar-fill bg-orange" style="width: 50%"></div></div>
+                </div>
+
+                <div class="mp-row">
+                    <div class="mp-header-flex">
+                        <span class="mp-label">Titik Kritis</span>
+                        <div class="mp-value-wrap">
+                            <span class="mp-number text-red drop-shadow-red">410</span>
+                            <span class="mp-badge bg-red text-white">KRITIS</span>
+                        </div>
+                    </div>
+                    <div class="bar-track-thick"><div class="bar-fill bg-red" style="width: 95%"></div></div>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-6 border-t border-white/10 text-center">
+                <p class="text-sm text-cyan italic">"Partikel kecil dengan dampak besar bagi lingkungan."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="journalism" class="section-padding relative z-10 border-b bg-dark-layer">
     <div class="container">
         <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
             <span class="subtitle-tag">Laporan Investigasi</span>
@@ -199,25 +277,11 @@
                     </div>
                 </div>
             </div>
-
-            <div class="scrolly-grid">
-                <div class="reveal-right flex flex-col justify-center">
-                    <div class="badge-glass text-cyan border-cyan mb-6 w-max"><i data-lucide="cpu" class="w-4 h-4 mr-2 inline"></i> Inovasi Jatim</div>
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Digitalisasi TPST: Solusi Terintegrasi</h3>
-                    <p class="text-muted text-lg mb-8 leading-relaxed">Tempat Pengolahan Sampah Terpadu (TPST) Magersari mulai menggunakan sistem digital pintar untuk melacak sirkulasi sampah daur ulang di wilayah Jawa Timur.</p>
-                    <a href="https://www.liputan6.com/amp/5583443/jawa-timur-penghasil-sampah-ke-2-terbesar-nasional-tpst-magersari-buat-solusi-sistem-kelola-sampah-anorganik-digital" target="_blank" class="btn-outline w-max">Baca Laporan Asli <i data-lucide="arrow-up-right" class="w-4 h-4 ml-2 inline"></i></a>
-                </div>
-                <div class="reveal-left">
-                    <div class="image-wrapper shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1000" alt="Fasilitas TPST">
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
 
-<section id="campaign" class="section-padding relative z-10 border-b bg-dark-layer">
+<section id="campaign" class="section-padding relative z-10 border-b">
     <div class="container">
         <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
             <span class="subtitle-tag text-red">Real Action. Real Impact.</span>
@@ -259,7 +323,6 @@
 
 <section id="about" class="section-padding relative z-10 border-b bg-dark-layer">
     <div class="container">
-
         <div class="text-center max-w-4xl mx-auto mb-16 reveal-up">
             <span class="subtitle-tag">Platform Visualisasi</span>
             <h2 class="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">Tentang Nerra</h2>
@@ -269,24 +332,24 @@
         </div>
 
         <div class="auto-grid gap-8 mb-24 reveal-up">
-            <div class="glass-card border-top-cyan text-center hover-lift p-8 flex flex-col items-center">
+            <div class="glass-card border-top-cyan text-center hover-lift p-8 flex flex-col items-center justify-center">
                 <div class="text-5xl mb-6 bounce-anim">🎯</div>
                 <h5 class="text-white font-bold text-xl mb-3">Fokus Lokal</h5>
                 <p class="text-sm text-muted">Monitoring pengelolaan sampah Surabaya dan Jawa Timur secara real-time.</p>
             </div>
-            <div class="glass-card border-top-cyan text-center hover-lift p-8 delay-1 flex flex-col items-center">
+            <div class="glass-card border-top-cyan text-center hover-lift p-8 delay-1 flex flex-col items-center justify-center">
                 <div class="text-5xl mb-6 bounce-anim">📊</div>
                 <h5 class="text-white font-bold text-xl mb-3">Data Terverifikasi</h5>
                 <p class="text-sm text-muted">Dari institusi riset Indonesia dan otoritas pemerintah lokal.</p>
             </div>
-            <div class="glass-card border-top-cyan text-center hover-lift p-8 delay-2 flex flex-col items-center">
+            <div class="glass-card border-top-cyan text-center hover-lift p-8 delay-2 flex flex-col items-center justify-center">
                 <div class="text-5xl mb-6 bounce-anim">🌊</div>
                 <h5 class="text-white font-bold text-xl mb-3">Kualitas Air</h5>
                 <p class="text-sm text-muted">Melacak pencemaran mikroplastik dan kesehatan ekosistem sungai.</p>
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-16 lg:gap-20">
+        <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 border-t border-white/5 pt-20">
             <div class="reveal-right flex flex-col justify-center">
                 <h3 class="text-3xl font-bold text-white mb-8">Tim Produksi</h3>
                 <div class="grid grid-cols-2 gap-4 sm:gap-6">
@@ -310,7 +373,7 @@
             </div>
 
             <div id="contact" class="reveal-left">
-                <div class="glass-card p-8 sm:p-12 h-full flex flex-col justify-center">
+                <div class="glass-card p-8 sm:p-12 h-full flex flex-col justify-center bg-black/20">
                     <h3 class="text-3xl font-bold text-white mb-4">Hubungi Kami</h3>
                     <p class="text-muted mb-8">Punya data lapangan terbaru atau ingin berkolaborasi? Mari bicara.</p>
 
@@ -318,7 +381,7 @@
                         <input type="text" placeholder="Nama Lengkap" required class="form-input">
                         <input type="email" placeholder="Alamat Email" required class="form-input">
                         <textarea placeholder="Pesan Anda..." rows="4" required class="form-input resize-none"></textarea>
-                        <button type="submit" class="btn-primary w-full py-4 mt-2 text-lg">Kirim Pesan <i data-lucide="send" class="w-5 h-5 ml-2 inline"></i></button>
+                        <button type="submit" class="btn-primary w-full py-4 mt-2 text-lg shadow-lg">Kirim Pesan <i data-lucide="send" class="w-5 h-5 ml-2 inline"></i></button>
                     </form>
                 </div>
             </div>
@@ -329,8 +392,9 @@
 <section id="movement" class="pledge-section relative z-10">
     <div class="pledge-bg"></div>
     <div class="container relative z-20">
-        <div class="glass-card p-8 md:p-12 lg:p-16 border-cyan shadow-glow bg-prussian/80">
+        <div class="solid-card p-8 md:p-12 lg:p-16 border border-white/5 shadow-glow bg-[#0A1424]">
             <div class="grid-2 gap-12 lg:gap-16 items-center">
+
                 <div class="reveal-right text-center lg:text-left">
                     <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">It's Now<br><span class="text-cyan">or Never.</span></h2>
                     <p class="text-lg text-muted-light mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
@@ -343,35 +407,36 @@
                 </div>
 
                 <div class="reveal-left">
-                    <form id="challengeForm" class="space-y-4 glass-card p-6 sm:p-8 bg-black/30 border-white/5 shadow-2xl">
+                    <form id="challengeForm" class="solid-card p-6 sm:p-8 bg-[#111F36] border border-white/5 shadow-2xl rounded-2xl">
                         <h3 class="text-2xl font-bold text-white mb-6 text-center">Commit Sekarang!</h3>
 
-                        <div class="input-wrapper">
-                            <i data-lucide="user" class="input-icon"></i>
-                            <input type="text" placeholder="Nama / Panggilan Lo" required class="form-input form-input-padded">
+                        <div class="form-group-safe">
+                            <i data-lucide="user" class="form-icon-safe"></i>
+                            <input type="text" placeholder="Nama / Panggilan Lo" required class="form-input-safe">
                         </div>
 
-                        <div class="input-wrapper">
-                            <i data-lucide="mail" class="input-icon"></i>
-                            <input type="email" placeholder="Email (Buat update info)" required class="form-input form-input-padded">
+                        <div class="form-group-safe">
+                            <i data-lucide="mail" class="form-icon-safe"></i>
+                            <input type="email" placeholder="Email (Buat update info)" required class="form-input-safe">
                         </div>
 
-                        <div class="input-wrapper">
-                            <i data-lucide="target" class="input-icon"></i>
-                            <select required class="form-input form-input-padded text-white cursor-pointer select-element">
-                                <option value="" disabled selected>Pilih aksi nyata lo...</option>
-                                <option value="1">Stop Pake Kantong Kresek</option>
-                                <option value="2">Mulai Pilah Sampah di Rumah</option>
-                                <option value="3">Gak Beli Minuman Botol Plastik</option>
+                        <div class="form-group-safe">
+                            <i data-lucide="target" class="form-icon-safe"></i>
+                            <select required class="form-input-safe select-safe text-white">
+                                <option value="" disabled selected class="text-muted">Pilih aksi nyata lo...</option>
+                                <option value="1" class="text-black">Stop Pake Kantong Kresek</option>
+                                <option value="2" class="text-black">Mulai Pilah Sampah di Rumah</option>
+                                <option value="3" class="text-black">Gak Beli Minuman Botol Plastik</option>
                             </select>
-                            <i data-lucide="chevron-down" class="select-arrow"></i>
+                            <i data-lucide="chevron-down" class="select-arrow-safe"></i>
                         </div>
 
-                        <button type="submit" class="btn-primary w-full py-4 text-lg mt-4 shadow-lg shadow-cyan/20">
-                            COUNT ME IN!
+                        <button type="submit" class="btn-primary w-full py-4 text-lg font-extrabold uppercase shadow-lg shadow-cyan/20 mt-4">
+                            Count Me In!
                         </button>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
@@ -380,7 +445,7 @@
 <footer class="bg-[#050A1A] border-t border-white/5 pt-12 pb-8 relative z-10">
     <div class="container">
         <div class="footer-layout mb-8">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center justify-center lg:justify-start gap-3">
                 <img src="Logo nerra.png" alt="Nerra Logo" class="footer-logo" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=N&color=06B6D4&background=transparent';">
                 <span class="text-xl font-bold text-white tracking-tight">Nerra.</span>
             </div>

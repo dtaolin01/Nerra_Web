@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 1. Navbar Glass Effect & Scroll Progress Bar
+    // 1. Navbar Glass Effect
     const navbar = document.getElementById("navbar");
     const myBar = document.getElementById("myBar");
 
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if(myBar) myBar.style.width = scrolled + "%";
     });
 
-    // 2. Mobile Menu Toggle
+    // 2. Mobile Menu
     const mobileMenuBtn = document.getElementById("mobile-menu");
     const navLinks = document.getElementById("nav-links");
 
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3. Scroll Reveal Animations
+    // 3. Scroll Animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -51,22 +51,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll('.reveal-up, .reveal-fade, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-    // 4. Counters
-    function startCounter(id, target, startVal) {
+    // 4. TRUE Live Counters (Tidak Berhenti)
+    function startLiveCounter(id, baseValue, incrementPerSecond, isFloat = false) {
         const el = document.getElementById(id);
         if(!el) return;
-        let current = startVal;
+
+        let current = baseValue;
+        const incrementPer100ms = incrementPerSecond / 10;
+
         setInterval(() => {
-            current += (target / 20000);
-            el.innerText = Math.floor(current).toLocaleString('id-ID');
+            current += incrementPer100ms;
+            if (isFloat) {
+                el.innerText = current.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            } else {
+                el.innerText = Math.floor(current).toLocaleString('en-US');
+            }
         }, 100);
     }
 
-    startCounter('hero-counter', 13000000, 12900000);
-    startCounter('plastic-leak', 1270000, 1260000);
-    startCounter('sea-animals', 64828, 64000);
+    startLiveCounter('hero-counter', 13000000, 2.5);
+    startLiveCounter('count-tpa', 210075.60, 0.0185, true);
+    startLiveCounter('count-sungai', 4267.34, 0.0004, true);
+    startLiveCounter('count-jatim', 1543192.31, 0.1359, true);
 
-    // 5. Form Pledges
+    // 5. Form Submit (Aman)
     const form = document.getElementById('challengeForm');
     const pledgeCount = document.getElementById('pledge-count');
 
@@ -83,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if(pledgeCount) {
                 let currentCount = parseInt(pledgeCount.innerText.replace(/,/g, ''));
-                pledgeCount.innerText = (currentCount + 1).toLocaleString('id-ID');
+                pledgeCount.innerText = (currentCount + 1).toLocaleString('en-US');
             }
 
             setTimeout(() => {
@@ -99,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 6. Ambient Particles
     const particlesContainer = document.getElementById("particles-container");
     if(particlesContainer) {
-        for(let i = 0; i < 20; i++) {
+        for(let i = 0; i < 25; i++) {
             let p = document.createElement("div");
             p.classList.add("particle");
             let size = Math.random() * 3 + 1;
