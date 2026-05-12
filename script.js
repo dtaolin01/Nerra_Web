@@ -1,6 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 1. Mobile Menu Interactivity
+    // 1. Navbar Glass Effect & Scroll Progress Bar
+    const navbar = document.getElementById("navbar");
+    const myBar = document.getElementById("myBar");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 30) navbar.classList.add("scrolled");
+        else navbar.classList.remove("scrolled");
+
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        if(myBar) myBar.style.width = scrolled + "%";
+    });
+
+    // 2. Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById("mobile-menu");
     const navLinks = document.getElementById("nav-links");
 
@@ -8,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mobileMenuBtn.addEventListener("click", () => {
             navLinks.classList.toggle("active");
             const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains("active")) {
+            if(navLinks.classList.contains("active")) {
                 icon.setAttribute("data-lucide", "x");
             } else {
                 icon.setAttribute("data-lucide", "menu");
@@ -16,9 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lucide.createIcons();
         });
 
-        // Close menu on link click (Mobile)
-        const links = navLinks.querySelectorAll("a");
-        links.forEach(link => {
+        navLinks.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 navLinks.classList.remove("active");
                 mobileMenuBtn.querySelector('i').setAttribute("data-lucide", "menu");
@@ -27,78 +39,78 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Glassmorphism Navbar on Scroll
-    const navbar = document.getElementById("navbar");
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 30) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
-    });
-
-    // 3. Scroll Reveal Animation (Intersection Observer)
+    // 3. Scroll Reveal Animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("active");
-                // Stop observing once animated
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-    document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-fade').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal-up, .reveal-fade, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-    // 4. Live Counter Simulation Engine
-    function animateLiveCounter(id, targetPerYear) {
-        const element = document.getElementById(id);
-        if (!element) return;
-
-        // Calculate addition per 100ms
-        const incrementPerMs = targetPerYear / (365 * 24 * 60 * 60 * 10);
-        let currentVal = targetPerYear * 0.95; // Start at 95% of target for realism
-
+    // 4. Counters
+    function startCounter(id, target, startVal) {
+        const el = document.getElementById(id);
+        if(!el) return;
+        let current = startVal;
         setInterval(() => {
-            currentVal += incrementPerMs;
-            element.innerText = Math.floor(currentVal).toLocaleString('id-ID');
+            current += (target / 20000);
+            el.innerText = Math.floor(current).toLocaleString('id-ID');
         }, 100);
     }
 
-    // Execute with Real Data
-    animateLiveCounter('hero-counter', 13000000);
-    animateLiveCounter('plastic-jatim', 13000000);
-    animateLiveCounter('plastic-leak', 1270000);
-    animateLiveCounter('sea-animals', 64828);
+    startCounter('hero-counter', 13000000, 12900000);
+    startCounter('plastic-leak', 1270000, 1260000);
+    startCounter('sea-animals', 64828, 64000);
 
-    // 5. Pledge Form Submission UX
+    // 5. Form Pledges
     const form = document.getElementById('challengeForm');
-    const pledgeCountElement = document.getElementById('pledge-count');
+    const pledgeCount = document.getElementById('pledge-count');
 
     if(form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const btn = form.querySelector('button');
-            const originalHtml = btn.innerHTML;
+            const originalText = btn.innerText;
 
-            // Success Feedback
-            btn.innerHTML = `<i data-lucide="check" class="mr-2"></i> IKRAR TERCATAT!`;
-            btn.style.background = "linear-gradient(135deg, #10B981, #059669)";
+            btn.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5 inline mr-2"></i> WELCOME TO SQUAD!`;
+            btn.style.background = "#10B981";
+            btn.style.color = "#FFFFFF";
             lucide.createIcons();
 
-            // Increment UI Counter
-            if(pledgeCountElement) {
-                let currentCount = parseInt(pledgeCountElement.innerText.replace(/,/g, ''));
-                pledgeCountElement.innerText = (currentCount + 1).toLocaleString('id-ID');
+            if(pledgeCount) {
+                let currentCount = parseInt(pledgeCount.innerText.replace(/,/g, ''));
+                pledgeCount.innerText = (currentCount + 1).toLocaleString('id-ID');
             }
 
-            // Reset after 3 seconds
             setTimeout(() => {
                 form.reset();
-                btn.innerHTML = originalHtml;
+                btn.innerText = originalText;
                 btn.style.background = "";
+                btn.style.color = "";
                 lucide.createIcons();
             }, 3000);
         });
     }
+
+    // 6. Ambient Particles
+    const particlesContainer = document.getElementById("particles-container");
+    if(particlesContainer) {
+        for(let i = 0; i < 20; i++) {
+            let p = document.createElement("div");
+            p.classList.add("particle");
+            let size = Math.random() * 3 + 1;
+            p.style.width = size + "px";
+            p.style.height = size + "px";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animationDuration = (Math.random() * 15 + 10) + "s";
+            p.style.animationDelay = Math.random() * 5 + "s";
+            particlesContainer.appendChild(p);
+        }
+    }
+
+    lucide.createIcons();
 });
