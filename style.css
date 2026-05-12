@@ -61,7 +61,7 @@ img { width: 100%; height: auto; display: block; object-fit: cover; }
     .scrolly-grid.reverse { direction: rtl; }
     .scrolly-grid.reverse > * { direction: ltr; }
     .bento-grid { grid-template-columns: repeat(3, 1fr); }
-    .daily-grid { grid-template-columns: repeat(4, 1fr); }
+    .daily-grid { grid-template-columns: avrepeat(4, 1fr); }
     .data-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
@@ -242,6 +242,15 @@ nav.scrolled { background: rgba(5, 10, 26, 0.95); backdrop-filter: blur(12px); b
 .campaign-bg { position: absolute; inset: 0; background: linear-gradient(145deg, rgba(6, 182, 212, 0.1) 0%, rgba(10, 17, 40, 0.9) 100%); z-index: 0; }
 .instagram-bg { background: linear-gradient(145deg, rgba(251, 146, 60, 0.1) 0%, rgba(10, 17, 40, 0.9) 100%); }
 .campaign-content { position: relative; z-index: 10; padding: 40px; height: 100%; }
+
+/* ================= CLIP-PATH SLIDERS ================= */
+.comparison-slider { position: relative; width: 100%; aspect-ratio: 16/9; min-height: 250px; border-radius: 16px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255,255,255,0.1); }
+.comparison-slider .side { position: absolute; inset: 0; width: 100%; height: 100%; }
+.comparison-slider img { width: 100%; height: 100%; object-fit: cover; }
+.comparison-slider .after { z-index: 2; clip-path: inset(0 50% 0 0); } /* Clip Path for perfect reveal without squishing image */
+.slider-control { position: absolute; -webkit-appearance: none; appearance: none; width: 100%; height: 100%; background: transparent; z-index: 10; top: 0; left: 0; cursor: ew-resize; outline: none; margin: 0; }
+.slider-control::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 32px; height: 32px; background: var(--white); border-radius: 50%; border: 3px solid var(--cyan); box-shadow: 0 0 15px rgba(0,0,0,0.5); cursor: ew-resize; }
+.slider-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--cyan); z-index: 1; transform: translateX(-50%); pointer-events: none; }
 
 /* ================= PLEDGE SECTION ================= */
 .pledge-section { padding: 120px 0; position: relative; overflow: hidden; }
