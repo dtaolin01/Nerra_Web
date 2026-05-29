@@ -22,7 +22,7 @@
 /* ================= RESET ================= */
 * { margin: 0; padding: 0; box-sizing: border-box; max-width: 100%; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--font-main); background-color: var(--bg-dark); color: var(--white); line-height: 1.7; overflow-x: hidden; }
+body { font-family: var(--font-main); background: linear-gradient(135deg, #050A1A 0%, #0B1C36 100%); background-attachment: fixed; color: var(--white); line-height: 1.7; overflow-x: hidden; }
 a { text-decoration: none; color: inherit; }
 ul, ol { list-style: none !important; margin: 0; padding: 0; }
 img { width: 100%; height: auto; display: block; object-fit: cover; }
@@ -61,7 +61,7 @@ img { width: 100%; height: auto; display: block; object-fit: cover; }
     .scrolly-grid.reverse { direction: rtl; }
     .scrolly-grid.reverse > * { direction: ltr; }
     .bento-grid { grid-template-columns: repeat(3, 1fr); }
-    .daily-grid { grid-template-columns: avrepeat(4, 1fr); }
+    .daily-grid { grid-template-columns: repeat(4, 1fr); }
     .data-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
@@ -87,7 +87,7 @@ h1, h2, h3, h4, h5 { font-weight: 800; letter-spacing: -0.02em; line-height: 1.2
 .text-cyan { color: var(--cyan); } .text-red { color: var(--red); } .text-yellow { color: var(--yellow); } .text-orange { color: var(--orange); } .text-green { color: var(--green); } .text-prussian { color: var(--prussian); } .text-black { color: #000; }
 .text-white { color: var(--white); } .text-white\/10 { color: rgba(255,255,255,0.1); } .text-muted { color: var(--text-muted); } .text-muted-light { color: var(--text-muted-light); }
 
-.bg-prussian { background-color: var(--prussian); } .bg-navy { background-color: var(--navy); } .bg-dark-layer { background-color: #030712; }
+.bg-prussian { background-color: var(--prussian); } .bg-navy { background-color: var(--navy); } .bg-dark-layer { background: linear-gradient(145deg, #020617 0%, #0D2240 50%, #020617 100%); }
 .bg-cyan { background-color: var(--cyan) !important; } .bg-yellow { background-color: var(--yellow) !important; } .bg-orange { background-color: var(--orange) !important; } .bg-red { background-color: var(--red) !important; } .bg-white { background-color: #fff !important; }
 .bg-cyan-light { background-color: rgba(6, 182, 212, 0.1); } .bg-red-light { background-color: rgba(239, 68, 68, 0.1); } .bg-black\/20 { background-color: rgba(0,0,0,0.2); } .bg-black\/30 { background-color: rgba(0,0,0,0.3); } .bg-white\/5 { background-color: rgba(255,255,255,0.05); } .bg-white\/10 { background-color: rgba(255,255,255,0.1); } .bg-blue-900\/30 { background-color: rgba(30, 58, 138, 0.3); }
 .bg-transparent { background-color: transparent; }
@@ -128,35 +128,71 @@ h1, h2, h3, h4, h5 { font-weight: 800; letter-spacing: -0.02em; line-height: 1.2
 
 /* ================= CARDS & LAYOUTS ================= */
 .glass-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); backdrop-filter: blur(16px); padding: 40px; }
-.solid-card { background: #0B192C; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
-.card-navy { background-color: #0B192C; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 32px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); position: relative; overflow: hidden; }
+.solid-card { background: linear-gradient(145deg, #112647 0%, #050A1A 100%); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+.card-navy { background: linear-gradient(145deg, #112647 0%, #050A1A 100%); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 32px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); position: relative; overflow: hidden; }
 
-/* Custom Data Cards (Anti Tabrakan) */
-/* ================= DATA LIVE CARDS (FIX SIZE & WRAP) ================= */
-.data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: stretch; }
-.data-card { background: #0B192C; border-radius: 24px; padding: 40px 32px; position: relative; overflow: hidden; border-bottom: 4px solid transparent; display: flex; flex-direction: column; height: 100%; transition: 0.3s; }
-.border-b-cyan { border-bottom-color: var(--cyan); }
-.border-b-orange { border-bottom-color: var(--orange); }
+/* ================= CUSTOM DATA CARDS (FADING PHOTOS) ================= */
+.data-card {
+    background-color: transparent;
+    border-radius: 24px;
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    transition: 0.4s ease;
+    background-size: cover;
+    background-position: center;
+}
 
-/* Membuat card Jatim (biasanya elemen ke-3) sedikit lebih lebar di layar besar */
+/* Menyuntikkan foto asli ke latar belakang dengan gradien overlay gelap */
+/* 1. Card TPA (image_ff8bbf.jpg) */
+.data-grid .data-card:nth-child(1) {
+    background-image: linear-gradient(135deg, rgba(5, 10, 26, 0.95) 0%, rgba(5, 10, 26, 0.6) 50%, rgba(5, 10, 26, 0.95) 100%), url('1637971543139.jpg');
+}
+/* 2. Card Sungai (Gemini_Generated_Image_gb7a9rgb7a9rgb7a.png) */
+.data-grid .data-card:nth-child(2) {
+    background-image: linear-gradient(135deg, rgba(5, 10, 26, 0.95) 0%, rgba(5, 10, 26, 0.6) 50%, rgba(5, 10, 26, 0.95) 100%), url('DARURAT-MIKROPLASTIK-DI-SUNGAI-4-768x512.jpg');
+}
+/* 3. Card Jatim (Placeholder Unsplash Industri) */
+.data-grid .data-card:nth-child(3) {
+    background-image: linear-gradient(135deg, rgba(5, 10, 26, 0.95) 0%, rgba(5, 10, 26, 0.6) 50%, rgba(5, 10, 26, 0.95) 100%), url('TPST-Sidoarjo.jpg');
+}
+
+/* Hover effect: Membuat foto sedikit lebih terang saat mouse diarahkan ke atasnya */
+.data-grid .data-card:nth-child(1):hover {
+    background-image: linear-gradient(135deg, rgba(5, 10, 26, 0.9) 0%, rgba(5, 10, 26, 0.3) 50%, rgba(5, 10, 26, 0.9) 100%), url('1637971543139.jpg');
+}
+.data-grid .data-card:nth-child(2):hover {
+    background-image: linear-gradient(135deg, rgba(5, 10, 26, 0.9) 0%, rgba(5, 10, 26, 0.3) 50%, rgba(5, 10, 26, 0.9) 100%), url('DARURAT-MIKROPLASTIK-DI-SUNGAI-4-768x512.jpg');
+}
+.data-grid .data-card:nth-child(3):hover {
+    background-image: linear-gradient(135deg, rgba(5, 10, 26, 0.9) 0%, rgba(5, 10, 26, 0.3) 50%, rgba(5, 10, 26, 0.9) 100%), url('TPST-Sidoarjo.jpg');
+}
+
 @media (min-width: 1200px) {
     .data-grid .data-card:last-child { min-width: 380px; }
 }
 
-.watermark-icon { position: absolute; right: -10px; top: -10px; width: 110px; height: 110px; opacity: 0.04; transform: rotate(-15deg); z-index: 0; }
-.data-card-content { position: relative; z-index: 1; }
-.data-card-title { font-size: 12px; letter-spacing: 1.5px; color: var(--text-muted-light); margin-bottom: 12px; }
-.data-card-number { font-size: clamp(32px, 4vw, 44px); font-weight: 800; margin: 10px 0; font-feature-settings: "tnum"; line-height: 1.1; }
-.data-card-unit { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
-.data-card-desc { font-size: 14px; color: var(--text-muted); text-align: center; margin-top: auto; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.05); pt-4: 15px; padding-top: 20px; }
+.data-card-content { position: relative; z-index: 10; margin-bottom: 1rem; flex-grow: 1; }
+.data-card-title { font-size: 0.75rem; font-weight: 700; color: var(--text-muted-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; width: 80%; }
+.data-card-number { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 0.5rem; font-feature-settings: "tnum"; line-height: 1; }
+.data-card-unit { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+.data-card-desc { font-size: 0.875rem; color: var(--text-muted); text-align: center; margin-top: auto; padding: 0 0.5rem; position: relative; z-index: 10; }
 .data-live-indicator { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
 
+/* Garis Neon di bawah card */
 .border-b-glow-cyan { border-bottom: 3px solid var(--cyan); box-shadow: inset 0 -15px 30px rgba(6, 182, 212, 0.05), 0 10px 30px rgba(0,0,0,0.5); }
 .border-b-glow-orange { border-bottom: 3px solid var(--orange); box-shadow: inset 0 -15px 30px rgba(251, 146, 60, 0.05), 0 10px 30px rgba(0,0,0,0.5); }
 .border-b-cyan { border-bottom: 3px solid var(--cyan); box-shadow: inset 0 -15px 30px rgba(6, 182, 212, 0.05), 0 10px 30px rgba(0,0,0,0.5); }
 .border-b-orange { border-bottom: 3px solid var(--orange); box-shadow: inset 0 -15px 30px rgba(251, 146, 60, 0.05), 0 10px 30px rgba(0,0,0,0.5); }
 
-.watermark-icon { position: absolute; top: 20px; right: 20px; width: 100px; height: 100px; opacity: 0.03; z-index: 0; pointer-events: none; }
+/* HILANGKAN IKON LAMA (WATERMARK) AGAR TIDAK RAMAI */
+.watermark-icon { display: none !important; }
+
 .hover-lift { transition: var(--transition); }
 .hover-lift:hover { transform: translateY(-8px); border-color: var(--cyan); box-shadow: 0 15px 30px rgba(6, 182, 212, 0.15); }
 
@@ -169,21 +205,10 @@ h1, h2, h3, h4, h5 { font-weight: 800; letter-spacing: -0.02em; line-height: 1.2
 .btn-outline:hover { background: var(--cyan); color: var(--prussian); border-color: var(--cyan); }
 
 /* ================= COMPONENT BARS ================= */
-.progress-track { width: 100%; height: 6px; background-color: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden; margin-bottom: 1.5rem; }
+.progress-track { width: 100%; height: 6px; background-color: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden; margin-bottom: 1.5rem; position: relative; z-index: 10; }
 .progress-fill { height: 100%; border-radius: 99px; display: block; }
 
-/* Mikroplastik Strict Layout (Anti Tabrakan) */
-.mp-container { display: flex; flex-direction: column; gap: 2rem; }
-.mp-row { width: 100%; }
-.mp-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; width: 100%; }
-.mp-label { font-size: 0.875rem; font-weight: 700; color: var(--white); letter-spacing: 0.05em; }
-.mp-value-wrap { display: flex; align-items: center; gap: 16px; }
-.mp-number { font-size: 2.5rem; font-weight: 800; font-feature-settings: "tnum"; line-height: 1; }
-.mp-badge { font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
-.bar-track-thick { display: block; width: 100%; height: 12px; background-color: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden; }
-.bar-fill { display: block; height: 100%; border-radius: 99px; transition: width 1s ease-in-out; }
-
-/* ================= FORMS (ANTI-TABRAKAN) ================= */
+/* ================= FORMS ================= */
 .form-group-safe { position: relative; width: 100%; margin-bottom: 20px; }
 .form-icon-safe { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; color: #94A3B8; pointer-events: none; z-index: 10; }
 .select-arrow-safe { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; color: #94A3B8; pointer-events: none; z-index: 10; }
@@ -193,7 +218,6 @@ h1, h2, h3, h4, h5 { font-weight: 800; letter-spacing: -0.02em; line-height: 1.2
 select.select-safe { appearance: none; padding-right: 56px !important; cursor: pointer; }
 select.select-safe option { background: var(--prussian); color: var(--white); }
 
-/* Forms Standard */
 .form-input { width: 100%; padding: 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-family: var(--font-main); outline: none; transition: var(--transition); }
 .form-input:focus { border-color: var(--cyan); background: rgba(0,0,0,0.6); }
 
@@ -247,14 +271,14 @@ nav.scrolled { background: rgba(5, 10, 26, 0.95); backdrop-filter: blur(12px); b
 .comparison-slider { position: relative; width: 100%; aspect-ratio: 16/9; min-height: 250px; border-radius: 16px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255,255,255,0.1); }
 .comparison-slider .side { position: absolute; inset: 0; width: 100%; height: 100%; }
 .comparison-slider img { width: 100%; height: 100%; object-fit: cover; }
-.comparison-slider .after { z-index: 2; clip-path: inset(0 50% 0 0); } /* Clip Path for perfect reveal without squishing image */
+.comparison-slider .after { z-index: 2; clip-path: inset(0 50% 0 0); }
 .slider-control { position: absolute; -webkit-appearance: none; appearance: none; width: 100%; height: 100%; background: transparent; z-index: 10; top: 0; left: 0; cursor: ew-resize; outline: none; margin: 0; }
 .slider-control::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 32px; height: 32px; background: var(--white); border-radius: 50%; border: 3px solid var(--cyan); box-shadow: 0 0 15px rgba(0,0,0,0.5); cursor: ew-resize; }
 .slider-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--cyan); z-index: 1; transform: translateX(-50%); pointer-events: none; }
 
 /* ================= PLEDGE SECTION ================= */
 .pledge-section { padding: 120px 0; position: relative; overflow: hidden; }
-.pledge-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1920') center/cover fixed; opacity: 0.1; }
+.pledge-bg { position: absolute; inset: 0; background: url('patung_surabaya.jpg') center/cover fixed; opacity: 0.1; }
 
 /* ================= FOOTER ================= */
 .footer-layout { display: flex; justify-content: space-between; align-items: center; }

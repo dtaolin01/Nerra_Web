@@ -51,21 +51,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll('.reveal-up, .reveal-fade, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-    // 4. TRUE Live Counters (Tidak Berhenti)
+
+    // =========================================================
+    // 4. LOGIKA "DATABASE LOKAL" (PERSISTENT LIVE COUNTER)
+    // =========================================================
     function startLiveCounter(id, baseValue, incrementPerSecond, isFloat = false) {
         const el = document.getElementById(id);
         if(!el) return;
 
-        let current = baseValue;
+        // Membuat 'kunci' unik untuk menyimpan data di database browser
+        const keyVal = `nerra_db_val_${id}`;
+        const keyTime = `nerra_db_time_${id}`;
+
+        let currentVal;
+        const now = Date.now(); // Waktu saat ini dalam milidetik
+
+        // 1. Cek apakah ada data terakhir yang disimpan di browser klien
+        const savedVal = localStorage.getItem(keyVal);
+        const savedTime = localStorage.getItem(keyTime);
+
+        if (savedVal !== null && savedTime !== null) {
+            // Jika ada, hitung selisih waktu (dalam detik) sejak klien terakhir menutup web
+            const elapsedSeconds = (now - parseInt(savedTime)) / 1000;
+            // Lanjutkan dari angka terakhir + (waktu yang hilang * penambahan per detik)
+            currentVal = parseFloat(savedVal) + (elapsedSeconds * incrementPerSecond);
+        } else {
+            // Jika baru PERTAMA KALI dibuka, gunakan perhitungan waktu dari 1 Jan 2026
+            const baseDate = new Date("2026-01-01T00:00:00").getTime();
+            const elapsedSeconds = (now - baseDate) / 1000;
+            // Cegah angka minus jika dites sebelum tahun 2026
+            const validElapsed = elapsedSeconds > 0 ? elapsedSeconds : 0;
+            currentVal = baseValue + (validElapsed * incrementPerSecond);
+        }
+
         const incrementPer100ms = incrementPerSecond / 10;
 
         setInterval(() => {
-            current += incrementPer100ms;
+            // Tambahkan nilai setiap 100 milidetik
+            currentVal += incrementPer100ms;
+
+            // Tampilkan ke layar
             if (isFloat) {
-                el.innerText = current.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                el.innerText = currentVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             } else {
-                el.innerText = Math.floor(current).toLocaleString('en-US');
+                el.innerText = Math.floor(currentVal).toLocaleString('en-US');
             }
+
+            // 2. Simpan nilai dan waktu terbaru ke database browser (berjalan di background)
+            localStorage.setItem(keyVal, currentVal.toString());
+            localStorage.setItem(keyTime, Date.now().toString());
+
         }, 100);
     }
 
@@ -74,37 +109,107 @@ document.addEventListener("DOMContentLoaded", () => {
     startLiveCounter('count-sungai', 4267.34, 0.0004, true);
     startLiveCounter('count-jatim', 1543192.31, 0.1359, true);
 
-    // 5. Form Submit (Aman)
-    const form = document.getElementById('challengeForm');
-    const pledgeCount = document.getElementById('pledge-count');
 
-    if(form) {
-        form.addEventListener('submit', (e) => {
+    // 5. Slider Simulation
+    const sliders = document.querySelectorAll('.slider-control');
+    sliders.forEach(slider => {
+        slider.addEventListener('input', (e) => {
+            const container = e.target.parentElement;
+            const afterSide = container.querySelector('.side.after');
+            const sliderLine = container.querySelector('.slider-line');
+
+            if(afterSide) {
+                afterSide.style.clipPath = `inset(0 ${100 - e.target.value}% 0 0)`;
+            }
+            if(sliderLine) {
+                sliderLine.style.left = e.target.value + "%";
+            }
+        });
+    });
+
+    // 6. Form Submit Email Asli (FormSubmit)
+    // JANGAN LUPA GANTI DENGAN EMAIL ASLI ANDA DI BAWAH INI
+    const ADMIN_EMAIL = "email_asli_anda@gmail.com";
+
+    const challengeForm = document.getElementById('challengeForm');
+    if(challengeForm) {
+        challengeForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const btn = form.querySelector('button');
+            const btn = this.querySelector('button');
             const originalText = btn.innerText;
 
-            btn.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5 inline mr-2"></i> WELCOME TO SQUAD!`;
-            btn.style.background = "#10B981";
-            btn.style.color = "#FFFFFF";
-            lucide.createIcons();
+            btn.innerText = "MENGIRIM...";
+            const formData = new FormData(this);
+            formData.append("_subject", "Eco Squad Baru Bergabung!");
 
-            if(pledgeCount) {
-                let currentCount = parseInt(pledgeCount.innerText.replace(/,/g, ''));
-                pledgeCount.innerText = (currentCount + 1).toLocaleString('en-US');
-            }
+            fetch(`https://formsubmit.co/ajax/${ADMIN_EMAIL}`, {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    btn.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5 inline mr-2"></i> WELCOME TO SQUAD!`;
+                    btn.style.background = "#10B981";
+                    btn.style.color = "#FFFFFF";
+                    lucide.createIcons();
 
-            setTimeout(() => {
-                form.reset();
-                btn.innerText = originalText;
-                btn.style.background = "";
-                btn.style.color = "";
-                lucide.createIcons();
-            }, 3000);
+                    const pledgeCount = document.getElementById('pledge-count');
+                    if(pledgeCount) {
+                        let currentCount = parseInt(pledgeCount.innerText.replace(/,/g, ''));
+                        pledgeCount.innerText = (currentCount + 1).toLocaleString('en-US');
+                    }
+
+                    setTimeout(() => {
+                        challengeForm.reset();
+                        btn.innerText = originalText;
+                        btn.style.background = "";
+                        btn.style.color = "";
+                        lucide.createIcons();
+                    }, 3000);
+                })
+                .catch(error => {
+                    btn.innerText = "GAGAL TERKIRIM, COBA LAGI";
+                    setTimeout(() => { btn.innerText = originalText; }, 3000);
+                });
         });
     }
 
-    // 6. Ambient Particles
+    const contactForm = document.getElementById('contactForm');
+    if(contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.innerHTML;
+
+            btn.innerText = "MENGIRIM...";
+            const formData = new FormData(this);
+            formData.append("_subject", "Pesan Baru dari Website Nerra!");
+
+            fetch(`https://formsubmit.co/ajax/${ADMIN_EMAIL}`, {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    btn.innerHTML = `Terkirim! <i data-lucide="check-circle" class="w-5 h-5 ml-2 inline"></i>`;
+                    btn.style.background = "#10B981";
+                    lucide.createIcons();
+
+                    setTimeout(() => {
+                        contactForm.reset();
+                        btn.innerHTML = originalText;
+                        btn.style.background = "";
+                        lucide.createIcons();
+                    }, 3000);
+                })
+                .catch(error => {
+                    btn.innerText = "Gagal Terkirim!";
+                    setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+                });
+        });
+    }
+
+    // 7. Ambient Particles
     const particlesContainer = document.getElementById("particles-container");
     if(particlesContainer) {
         for(let i = 0; i < 25; i++) {
@@ -119,25 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
             particlesContainer.appendChild(p);
         }
     }
-
-    // 4. Before/After Simulation (Telah diperbarui memakai clip-path)
-    const sliders = document.querySelectorAll('.slider-control');
-    sliders.forEach(slider => {
-        slider.addEventListener('input', (e) => {
-            const container = e.target.parentElement;
-            const afterSide = container.querySelector('.side.after');
-            const sliderLine = container.querySelector('.slider-line');
-
-            // Inset clip-path crops from top, right, bottom, left.
-            // 100 - value gives the percentage to crop from the right!
-            if(afterSide) {
-                afterSide.style.clipPath = `inset(0 ${100 - e.target.value}% 0 0)`;
-            }
-            if(sliderLine) {
-                sliderLine.style.left = e.target.value + "%";
-            }
-        });
-    });
 
     lucide.createIcons();
 });
