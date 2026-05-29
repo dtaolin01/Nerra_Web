@@ -224,6 +224,40 @@ document.addEventListener("DOMContentLoaded", () => {
             particlesContainer.appendChild(p);
         }
     }
+    // =========================================================
+    // 8. FORCE SMOOTH SCROLL UNTUK SEMUA TOMBOL MENU
+    // =========================================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault(); // Mencegah loncatan kasar bawaan HTML
 
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return; // Abaikan kalau cuma href="#"
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                // Hitung tinggi navbar agar berhentinya pas dan tidak tertutup
+                const navbarHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+                // Paksa scroll mulus
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                // (Opsional) Tutup menu mobile jika tombol ditekan dari HP
+                const navLinks = document.getElementById("nav-links");
+                if (navLinks && navLinks.classList.contains("active")) {
+                    navLinks.classList.remove("active");
+                    const mobileMenuBtn = document.getElementById("mobile-menu");
+                    if (mobileMenuBtn) {
+                        mobileMenuBtn.querySelector('i').setAttribute("data-lucide", "menu");
+                        lucide.createIcons();
+                    }
+                }
+            }
+        });
+    });
     lucide.createIcons();
 });
